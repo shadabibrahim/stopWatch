@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stop Watch</title>
+    <style>
+        body {
+            background: black;
+        }
+
+        header {
+            min-height: 200px;
+            width: 1200px;
+            margin: 100px auto;
+        }
+
+        .a {
+            height: 250px;
+            width: 250px;
+            float: left;
+            border: 15px solid yellow;
+            box-sizing: border-box;
+            margin: 25px;
+            box-shadow: 0px 0px 25px 3px yellow inset;
+            border-radius: 10px;
+            font-size: 100px;
+            text-align: center;
+            color: yellow;
+            padding-top: 25px;
+        }
+
+        p {
+            font-size: 25px;
+        }
+    </style>
+
+</head>
+
+<body>
+   
+    <header>
+        <center>
+            <div class="a">
+                <b id="h">00</b>
+                <p>HOURS</p>
+            </div>
+            <div class="a">
+                <b id="m">00</b>
+                <p>MINUTES</p>
+            </div>
+            <div class="a">
+                <b id="s">00</b>
+                <p>SECOND</p>
+            </div>
+            <div class="a">
+                <b id="ms">00</b>
+                <p>ML SECOND</p>
+            </div>
+            <input type="button" onclick="stopWatch(this)" value="START"  />
+        </center>
+    </header>
+    <script>
+        var h = 0;
+        var m = 0;
+        var s = 0;
+        var ms = 0;
+        function demo() {
+            var hh = document.querySelector("#h");
+            var mm = document.querySelector("#m");
+            var ss = document.querySelector("#s");
+            var mls = document.querySelector("#ms");
+            ms++
+            if(ms==1000)
+            {
+                ms=0;
+                s++;
+                if(s==60){
+                    s=0;
+                    m++;
+                    if(m==60)
+                    {
+                        m=0;
+                        h++;
+                    }
+                }
+            }
+            if(h<10)
+          hh.innerText = "0" + h;
+          else
+          hh.innerText = h;
+          if(m<10)
+          mm.innerText = "0" + m;
+          else
+          mm.innerText = m;
+          if(s<10)
+          ss.innerText = "0" + s;
+          else
+          ss.innerText = s;
+          if(ms<10)
+          mls.innerText = "0" +ms;
+          else
+          mls.innerText  = ms;
+        }
+        function stopWatch(x)
+        {
+            if(x.value=="START")
+            {
+                x.value = "STOP";
+                x.style.background = "red";
+                x.style.color = "white";
+                x.style.padding = "10px"
+                a=setInterval(demo,1);
+            }
+            else{
+                x.value = "START";
+                x.style.background = "green";
+                x.style.color = "white";
+                x.style.padding = "10px";
+                clearInterval(a)
+            }
+        }
+    </script>
+</body>
+
+</html>
